@@ -5,8 +5,8 @@ import bcrypt from 'bcrypt';
 import { NextAuthOptions } from "next-auth";
 
 interface Credentials {
-  username: string;
-  password: string;
+  Username: string;
+  Password: string;
 }
 
 export const authOptions: NextAuthOptions = {
@@ -25,18 +25,18 @@ export const authOptions: NextAuthOptions = {
           password: { label: "Password", type: "password" },
         },
         async authorize(credentials: Credentials, req: any) {
-          const { username, password } = credentials;
+          const { Username, Password } = credentials;
   
           const user = await prisma.user.findUnique({
             where: {
-              Username: username
+              Username: Username
             },
           });
           if (!user) {
             return null;
           }
   
-          const confirmPass = await bcrypt.compare(password, user?.Password);
+          const confirmPass = await bcrypt.compare(Password, user?.Password);
   
           if (confirmPass) {
             return user;
