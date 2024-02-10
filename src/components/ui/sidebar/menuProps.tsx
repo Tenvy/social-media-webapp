@@ -12,14 +12,12 @@ export const MenuFunc = (user:string) => {
           href: '/',
           icon: <HomeIcon size={iconSize} />,
           isShow: true,
-          
         },
         {
             title: 'Create',
-            href: '/create',
+            href: '#',
             icon: <CirclePlusIcon size={iconSize} />,
             isShow: true,
-            
           },
         { 
           title: 'Profile',
