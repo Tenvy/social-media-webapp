@@ -4,6 +4,13 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { BsArrowRightShort as ExternalLinkIcon } from 'react-icons/bs';
 import { MenuItemProps } from '@/type/sidebarMenu';
+import {
+    Dialog,
+    DialogContent,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import Create from '@/components/create/create';
 
 const MenuItem = ({
     title,
@@ -18,10 +25,10 @@ const MenuItem = ({
     const pathname = usePathname();
     const isExternalUrl = href?.includes('http');
     const isHashLink = href === '#';
-    
+
     const activeClasses = `flex font-sora items-center gap-5 py-2 px-4 rounded-lg hover:bg-zinc-900 group ${pathname === href
-            ? 'bg-primary-color !text-secondary-color'
-            : 'hover:lg:bg-primary-color hover:!text-secondary-color hover:lg:bg-primary-color hover:lg:rounded-lg lg:transition-all lg:duration-300'
+        ? 'bg-primary-color !text-secondary-color'
+        : 'hover:lg:bg-primary-color hover:!text-secondary-color hover:lg:bg-primary-color hover:lg:rounded-lg lg:transition-all lg:duration-300'
         }`;
 
     const handleMouseEnter = () => {
@@ -72,7 +79,17 @@ const MenuItem = ({
     };
 
     return isHashLink ? (
-        <div className='cursor-pointer'>{itemComponent()}</div>
+        <Dialog>
+            <DialogTrigger asChild>
+                <div className='cursor-pointer'>{itemComponent()}</div>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogTitle>{title}</DialogTitle>
+                {title === 'Create' ? (
+                    <Create/>
+                ) : null}
+            </DialogContent>
+        </Dialog>
     ) : (
         <Link
             href={href}
