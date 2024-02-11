@@ -9,4 +9,12 @@ const CreateAlbum = async (data: albumType) => {
     return response.json()
 }
 
-export { CreateAlbum }
+const GetAlbum = async () => {
+    const response = await fetch(`/api/album`, {
+        method: 'GET',
+        cache: 'no-store',
+    })
+    return response.json()
+}
+
+export { CreateAlbum, GetAlbum }
