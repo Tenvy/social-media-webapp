@@ -13,6 +13,7 @@ const CreateAlbumPage = () => {
     const router = useRouter()
     const [loading, setLoading] = useState<boolean>(false)
     const [values, setValues] = useState<albumType>({
+        AlbumID: 0,
         NamaAlbum: 'hey',
         Deskripsi: 'hey',
         UserID: 0,
@@ -55,7 +56,6 @@ const CreateAlbumPage = () => {
                 </div>
             </div>
             <DialogFooter>
-                
                 <Button onClick={CreateAlbumFunc} disabled={loading} >Create Album</Button>
             </DialogFooter>
         </>
