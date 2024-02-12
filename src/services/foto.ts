@@ -6,7 +6,7 @@ const createFoto = async (state: any, image: any) => {
     formData.append('JudulFoto', JudulFoto);
     formData.append('DeskripsiFoto', DeskripsiFoto);
     formData.append('AlbumID', AlbumID);
-    formData.append('image', image);
+    formData.set('image', image);
     
   
     try {
@@ -14,11 +14,12 @@ const createFoto = async (state: any, image: any) => {
         method: 'POST',
         body: formData,
       });
+      if (!response.ok) throw new Error(await response.text())
       const data = await response.json();
       return data;
     } catch (error) {
       console.error('Fetch error:', error);
-      return null;
+      throw new Error()
     }
   };
 
