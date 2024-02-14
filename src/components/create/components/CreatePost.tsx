@@ -29,6 +29,7 @@ const CreatePost = () => {
     const router = useRouter()
     const [loading, setLoading] = useState<boolean>(false)
     const [values, setValues] = useState<fotoType>({
+        FotoID: 0,
         AlbumID: 0,
         JudulFoto: '',
         DeskripsiFoto: '',
@@ -87,7 +88,13 @@ const CreatePost = () => {
         <>
             <div className="grid gap-4 py-4">
                 <div className='flex flex-col items-center gap-2'>
-                    <Image src={image ? URL.createObjectURL(image) : ""} alt="Book Image" width={240} height={240} className="border border-dashed" />
+                    {
+                        image ? (
+                            <Image src={image ? URL.createObjectURL(image) : ""} alt="Book Image" width={240} height={240} className="border border-dashed" />
+                        ) : (
+                            <div className='w-[240px] h-[240px] border border-dashed'/>
+                        )
+                    }
                     <div className='flex justify-center'>
                         <input type="file" className='hidden' name='file-input' onChange={handleFileChange} id='file-input' />
                         <label htmlFor="file-input" className='py-2 px-4 bg-primary text-primary-foreground shadow hover:bg-primary/90 rounded-md cursor-pointer'>Select Image</label>
