@@ -23,4 +23,14 @@ const createFoto = async (state: any, image: any) => {
     }
   };
 
-export { createFoto }
+const getFoto = async () => {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/foto`, {method: 'GET', cache: 'no-store'})
+  return response.json()
+}
+
+const getFotoById = async (id: number) => {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/foto/${id}`, {method: 'GET', cache: 'no-store'})
+  return response.json()
+}
+
+export { createFoto, getFoto, getFotoById }
