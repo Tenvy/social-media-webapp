@@ -1,9 +1,10 @@
 import Image from "next/image";
+import PostContainer from "./components/PostContainer";
 
 export default function Home() {
   return (
-    <main className="p-4">
-        test
+    <main className="lg:w-[110vh] mx-auto py-10">
+      <PostContainer/>
     </main>
   );
 }
