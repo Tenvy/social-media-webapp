@@ -23,9 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} dark`}>
         <Provider session={session}>
-          <div className="flex gap-4">
+          <div className="flex">
             <Sidebar />
-            {children}
+            <div className="w-full">
+              {children}
+            </div>
             <Toaster />
           </div>
         </Provider>
