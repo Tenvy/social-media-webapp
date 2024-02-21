@@ -25,13 +25,17 @@ export async function POST(request: Request) {
 export async function GET(req: Request) {
   try {
     const session: any = await getServerSession(authOptions);
-
-    const response = await prisma.album.findMany({
-      where: {
-        UserID: session?.user?.UserID,
-      },
-    });
-    return NextResponse.json(response);
+    
+    if (session) {
+      const response = await prisma.album.findMany({
+        where: {
+          UserID: session?.user?.UserID,
+        },
+      });
+      return NextResponse.json(response);
+    } else {
+      return NextResponse.json({msg: "Kamu belum login"})
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
     return NextResponse.json({ msg: "Something went wrong.", error });
