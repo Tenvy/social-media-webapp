@@ -4,9 +4,8 @@ import { getFotoById } from '@/services/foto'
 
 const page = async ({ params }: { params: { id: number } }) => {
   const data = await getFotoById(params.id)
-  console.log(data)
   return (
-    <div className='lg:w-[120vh] mx-auto py-10 px-2 h-[100vh]'>
+    <div className='lg:w-[120vh] mx-auto h-[100vh] py-10 px-2'>
       <PostDetail {...data}/>
     </div>
   )
