@@ -1,9 +1,11 @@
 import { authOptions } from "@/lib/AuthOptions";
+import { supabase } from "@/lib/supabaseClient";
 import prisma from "@/utils/db"
 import { existsSync , mkdirSync } from "fs";
 import { writeFile } from "fs/promises";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server"
+import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(request: Request) {
   const session: any = await getServerSession(authOptions);  
@@ -14,45 +16,63 @@ export async function POST(request: Request) {
   const AlbumID = formData.get('AlbumID') as string
   const image = formData.get('image') as unknown as File
 
-    if (!image) {
-        return NextResponse.json({success: false})
-    }
+  const uuid = uuidv4()
+
+  //   if (!image) {
+  //       return NextResponse.json({success: false})
+  //   }
+  
+  let uniqueImageName = image.name;
+
+  const { data: existingFile } = await supabase.storage.from('image').upload(`${session?.user?.Username}/${uuid}`, image, {
+      cacheControl: '3600',
+      upsert: false
+    })
+  
+  console.log({existingFile})
+  return NextResponse.json({existingFile})
+
+  // if (existingFile) {
+  //   let count = 1;
+  
+  //   const extension = image.name.split('.').pop();
+    
+  //   while (existingFile) {
+  //     uniqueImageName = `${image.name.split('.')[0]}_${count}.${extension}`;
+  //     const { data: checkFile } = await supabase.storage.from('image').getPublicUrl(`${session?.user?.Username}/${uniqueImageName}`);
+      
+  //     if (!checkFile) {
+  //       break;
+  //     }
+  
+  //     count += 1;
+  //   }
+  // }
+  
+  // const { data, error } = await supabase.storage.from('image').upload(`${session?.user?.Username}/${uniqueImageName}`, image, {
+  //   cacheControl: '3600',
+  //   upsert: false
+  // });
+
+  // console.log({data, error})
+  // return NextResponse.json({data, error})
+  // const path = `${rootDir}/public/${session?.user?.Username}/${uniqueImageName}`;
+  // await writeFile(path, buffer)
 
 
-  const bytes = await image.arrayBuffer()
-  const buffer = Buffer.from(bytes)
-
-  const rootDir = process.cwd();
-  const imageName = image.name;
-
-  const folderName = `${rootDir}/public/${session?.user?.Username}`;
-  if (!existsSync(folderName)) {
-    mkdirSync(folderName);
-  }
-
-  let count = 1;
-  let uniqueImageName = imageName;
-  while (existsSync(`${rootDir}/public/${session?.user?.Username}/${uniqueImageName}`)) {
-    const extension = imageName.split('.').pop();
-    uniqueImageName = `${imageName.split('.')[0]}_${count}.${extension}`;
-    count += 1;
-  }
-
-  const path = `${rootDir}/public/${session?.user?.Username}/${uniqueImageName}`;
-  await writeFile(path, buffer)
 
     try {
-        const response = await prisma.foto.create({
-            data: {
-                JudulFoto,
-                DeskripsiFoto,
-                LokasiFile: `/${session?.user?.Username}/${uniqueImageName}`,
-                TanggalUnggah: new Date,
-                AlbumID: parseInt(AlbumID),
-                UserID : session?.user?.UserID,
-            }
-        })
-        return NextResponse.json(response)
+        // const response = await prisma.foto.create({
+        //     data: {
+        //         JudulFoto,
+        //         DeskripsiFoto,
+        //         LokasiFile: `/${session?.user?.Username}/${image.name}`,
+        //         TanggalUnggah: new Date,
+        //         AlbumID: parseInt(AlbumID),
+        //         UserID : session?.user?.UserID,
+        //     }
+        // })
+        // return NextResponse.json({response, data})
     } catch (error) {
         return NextResponse.json({msg: "Something went wrong.", error})
     }
