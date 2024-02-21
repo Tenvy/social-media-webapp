@@ -24,8 +24,8 @@ const PostDetail = async ({
 }: fotoType) => {
   return (
     <div className='grid grid-cols-2 h-full border rounded-md'>
-      <div className='h-[1000px] w-[600px] m-auto'>
-        <Image src={LokasiFile} alt={JudulFoto} width={500} height={500} className='w-full h-auto block'/>
+      <div className='m-auto relative w-full h-full'>
+        <Image src={LokasiFile} alt={JudulFoto} layout='fill' className='h-[80%] object-contain'/>
       </div>
       <div className='w-full border-l'>
         <div className='border-b flex w-full'>
