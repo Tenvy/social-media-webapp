@@ -48,11 +48,34 @@ const PostDetail = async ({
             </DropdownMenu>
           </div>
         </div>
-        <div>
-
+        <div className='overflow-y-scroll scrollbar-hide h-[60vh]'>
+          <div className='px-4 my-2'>
+            <div><span className='font-semibold'>tenvy&nbsp;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ipsum libero nulla nemo, similique commodi omnis. Labore, impedit similique vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci. Ducimus, impedit?</div>
+            <div className='text-sm text-zinc-600'>2m</div>
+          </div>
+          <div className='px-4 my-2'>
+            <div><span className='font-semibold'>kepinkun&nbsp;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ipsum libero nulla nemo</div>
+            <div className='text-sm text-zinc-600'>2m</div>
+          </div>
+          <div className='px-4 my-2'>
+            <div><span className='font-semibold'>tenvy&nbsp;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ipsum libero nulla nemo, similique commodi omnis. Labore, impedit similique vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci. Ducimus, impedit?</div>
+            <div className='text-sm text-zinc-600'>2m</div>
+          </div>
+          <div className='px-4 my-2'>
+            <div><span className='font-semibold'>tenvy&nbsp;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ipsum libero nulla nemo, similique commodi omnis. Labore, impedit similique vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci. Ducimus, impedit?</div>
+            <div className='text-sm text-zinc-600'>2m</div>
+          </div>
+          <div className='px-4 my-2'>
+            <div><span className='font-semibold'>tenvy&nbsp;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ipsum libero nulla nemo, similique commodi omnis. Labore, impedit similique vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci. Ducimus, impedit?</div>
+            <div className='text-sm text-zinc-600'>2m</div>
+          </div>
+          <div className='px-4 my-2'>
+            <div><span className='font-semibold'>tenvy&nbsp;</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ipsum libero nulla nemo, similique commodi omnis. Labore, impedit similique vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci. Ducimus, impedit?</div>
+            <div className='text-sm text-zinc-600'>2m</div>
+          </div>
         </div>
-        <div>
-
+        <div className='border-t h-fit'>
+          
         </div>
       </div>
     </div>
