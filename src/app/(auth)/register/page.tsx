@@ -19,9 +19,11 @@ const Form = () => {
 
   const register = async () => {
     try {
-        if(formData.Username === '' || formData.Password === '' || formData.NamaLengkap === '' || formData.Email === '' || formData.Alamat === '') return toast({title: 'Validation Error', description: 'All Data Must be filled'})
+        if(formData.Username === '' || formData.Password === '' || formData.NamaLengkap === '' || formData.Email === '' || formData.Alamat === '') { return toast({title: 'Validation Error', description: 'All Data Must be filled'})}
         if (!confirm) return toast({title: 'Password Error', description: 'Confirm Password field Doesnt Match'})
-      await CreateUser(formData);
+      const response = await CreateUser(formData);
+      if(response) return toast({title: 'Server Message', description: response.msg})
+    console.log(response)
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +72,7 @@ const Form = () => {
             <Input onChange={checkPassword} type="password" placeholder="Secret" className="w-full rounded-full py-2 px-4 border" required />
           </div>
         </div>
-        <Button onClick={register} className="p-3 rounded-full">
+        <Button onClick={()=> register()} className="p-3 rounded-full">
           Register
         </Button>
       </div>
