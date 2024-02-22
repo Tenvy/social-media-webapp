@@ -1,3 +1,4 @@
+import { likeType } from "./like";
 import { userType } from "./user";
 
 export type fotoType = {
@@ -9,4 +10,5 @@ export type fotoType = {
     AlbumID: number
     UserID: number;
     user?: userType;
+    likefoto?: likeType;
 }
