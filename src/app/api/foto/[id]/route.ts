@@ -16,7 +16,8 @@ export async function GET(req: Request, context: { params: { id: string } }) {
                     FotoID: parsedId
                 },
                 include: {
-                    user: true
+                    user: true,
+                    likefoto: true,
                 }
             })
             return NextResponse.json(response)
