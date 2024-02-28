@@ -1,4 +1,5 @@
 import { albumType } from "@/type/album"
+import { headers } from "next/headers"
 
 const CreateAlbum = async (data: albumType) => {
     const response = await fetch(`/api/album`, {
@@ -17,4 +18,12 @@ const GetAlbum = async () => {
     return response.json()
 }
 
-export { CreateAlbum, GetAlbum }
+const GetAlbumById = async (id: string) => {
+    const response = await fetch(`${process.env.NEXTAUTH_URL}/api/album/${id}`, {
+        method: 'GET',
+        cache: 'no-store',
+    })
+    return response.json()
+}
+
+export { CreateAlbum, GetAlbum, GetAlbumById }
