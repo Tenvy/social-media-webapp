@@ -4,6 +4,7 @@ import { fotoType } from "@/type/foto";
 import Image from "next/image";
 import Comment from "./Comment";
 import { getLike } from "@/services/like";
+import { hitungSelisihWaktu } from "@/lib/timeHelper";
 
 const PostDetail = async ({
   FotoID,
@@ -14,9 +15,10 @@ const PostDetail = async ({
   TanggalUnggah,
   UserID,
   user,
-  likefoto
+  likefoto,
+  komentarfoto,
 }: fotoType) => {
-  const yourLike = await getLike(FotoID)
+  const yourLike = await getLike(FotoID);
 
   return (
     <div className="grid grid-cols-2 h-full border rounded-md">
@@ -43,57 +45,18 @@ const PostDetail = async ({
               </div>
               <div className="text-sm text-zinc-600">2m</div>
             </div>
-            <div className="px-4 my-2">
-              <div>
-                <span className="font-semibold">kepinkun&nbsp;</span>Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Enim ipsum libero
-                nulla nemo
+            {komentarfoto && komentarfoto.map((data, index) => (
+              <div key={index} className="px-4 my-2">
+                <div>
+                  <span className="font-semibold">{data.user.Username}&nbsp;</span>
+                  {data.IsiKomentar}
+                </div>
+                <div className="text-sm text-zinc-600">{hitungSelisihWaktu(new Date(data.TanggalKomentar))}</div>
               </div>
-              <div className="text-sm text-zinc-600">2m</div>
-            </div>
-            <div className="px-4 my-2">
-              <div>
-                <span className="font-semibold">tenvy&nbsp;</span>Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Enim ipsum libero
-                nulla nemo, similique commodi omnis. Labore, impedit similique
-                vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci.
-                Ducimus, impedit?
-              </div>
-              <div className="text-sm text-zinc-600">2m</div>
-            </div>
-            <div className="px-4 my-2">
-              <div>
-                <span className="font-semibold">tenvy&nbsp;</span>Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Enim ipsum libero
-                nulla nemo, similique commodi omnis. Labore, impedit similique
-                vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci.
-                Ducimus, impedit?
-              </div>
-              <div className="text-sm text-zinc-600">2m</div>
-            </div>
-            <div className="px-4 my-2">
-              <div>
-                <span className="font-semibold">tenvy&nbsp;</span>Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Enim ipsum libero
-                nulla nemo, similique commodi omnis. Labore, impedit similique
-                vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci.
-                Ducimus, impedit?
-              </div>
-              <div className="text-sm text-zinc-600">2m</div>
-            </div>
-            <div className="px-4 my-2">
-              <div>
-                <span className="font-semibold">tenvy&nbsp;</span>Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Enim ipsum libero
-                nulla nemo, similique commodi omnis. Labore, impedit similique
-                vel earum voluptatum culpa eveniet rem? Possimus, unde adipisci.
-                Ducimus, impedit?
-              </div>
-              <div className="text-sm text-zinc-600">2m</div>
-            </div>
+            ))}
           </div>
         </div>
-        <Comment FotoID={FotoID} like={likefoto} yourlike={yourLike}/>
+        <Comment FotoID={FotoID} like={likefoto} yourlike={yourLike} />
       </div>
     </div>
   );
