@@ -1,5 +1,4 @@
 import { albumType } from "@/type/album"
-import { headers } from "next/headers"
 
 const CreateAlbum = async (data: albumType) => {
     const response = await fetch(`/api/album`, {
