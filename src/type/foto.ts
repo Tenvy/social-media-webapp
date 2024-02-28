@@ -1,5 +1,15 @@
+import { user } from "@prisma/client";
 import { likeType } from "./like";
 import { userType } from "./user";
+
+interface komentarfoto {
+    KomentarID: number;
+    FotoID: number;
+    UserID: number;
+    IsiKomentar: string;
+    TanggalKomentar: Date;
+    user: user;
+}
 
 export type fotoType = {
     FotoID: number;
@@ -11,4 +21,5 @@ export type fotoType = {
     UserID: number;
     user?: userType;
     likefoto?: likeType;
+    komentarfoto?: komentarfoto[];
 }
