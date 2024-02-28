@@ -18,6 +18,11 @@ export async function GET(req: Request, context: { params: { id: string } }) {
                 include: {
                     user: true,
                     likefoto: true,
+                    komentarfoto: {
+                      include: {
+                        user: true
+                      }
+                    }
                 }
             })
             return NextResponse.json(response)
