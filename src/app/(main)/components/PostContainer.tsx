@@ -8,7 +8,6 @@ import Post from './Post'
 
 const PostContainer = async () => {
     const data = await getFoto()
-    console.log(data)
     return (
         <div className='grid grid-cols-3 gap-1'>
             {data.map((res: fotoType, key: number) => (
