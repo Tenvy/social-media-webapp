@@ -6,7 +6,16 @@ import React from "react";
 
 const page = async ({ params }: { params: { user: string } }) => {
   const data: userType = await getUser(params.user);
-  console.log(data);
+  console.log(params.user)
+  console.log(data)
+
+  if (!data) {
+    return (
+      <div>
+        No user data found!
+      </div>
+    )
+  }
 
   return (
     <div className="p-6 container">
@@ -16,16 +25,16 @@ const page = async ({ params }: { params: { user: string } }) => {
           <div className="text-sm text-zinc-600">@{data.Username}</div>
           <div></div>
           <div className="flex gap-4 mt-4">
-            <div>{data.album.length} Album</div>
-            <div>{data.foto.length} Photo</div>
+            <div>{data.album ? data.album.length : "No"} Album</div>
+            <div>{data.foto ? data.foto.length : "No"} Photo</div>
           </div>
         </div>
       </div>
       <div className="p-6">
         <div className="text-xl font-semibold mb-2">Album List</div>
         <div className="grid grid-cols-3 gap-4">
-          {data.album.map((data, index) => (
-            <Link href={`/album/${data.AlbumID}`}>
+          {data.album && data.album.map((data, index) => (
+            <Link key={index} href={`/album/${data.AlbumID}`}>
               <Button
                 variant={"secondary"}
                 className="bg-transparent border border-white w-full"
