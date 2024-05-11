@@ -2,11 +2,11 @@
 ![image](https://github.com/Tenvy/social-media-webapp/assets/87992922/a389bd21-3ce5-4b7d-af4e-5d46962307ab)
 
 ## Introduction
-This website is a social media web application where users can connect, share updates, and interact with friends online. I started this project to explore modern web development techniques and create a platform for social engagement.
+This website is a social media web application created for my school project using Next.js. It allows users to connect, share updates, and interact with friends online. I initiated this project to explore modern web development techniques and to build a platform for social engagement.
 
-I built the project using React for the frontend, incorporating tools like Redux for state management, Axios for API requests, and styled-components for flexible styling.
+I developed this project using Next.js for server-side rendering on the frontend and backend, Prisma for my ORM, and tailwind for flexible styling.
 
-Feel free to reach out if you have any questions or suggestions! 😄
+Feel free to reach out if you have any questions or suggestions!
 
 ## Getting Started
 If you're interested in running this project on your local machine, follow the steps below.
