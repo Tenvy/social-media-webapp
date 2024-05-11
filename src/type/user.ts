@@ -6,6 +6,6 @@ export type userType = {
     Email: string;
     NamaLengkap: string;
     Alamat: string;
-    album: album[];
-    foto: foto[];
+    album?: album[];
+    foto?: foto[];
 }
