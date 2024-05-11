@@ -1,17 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import { useSession, signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Input } from "@/components/ui/input"
 
 const Form = () => {
     const { data: session } = useSession();
-    const router = useRouter();
-  
-    if (session) {
-      router.push('/');
-    }
 
   const [formData, setFormData] = useState({
     Username: '',
