@@ -43,7 +43,7 @@ const PostDetail = async ({
                 <span className="font-semibold">{user?.Username}&nbsp;</span>
                 {DeskripsiFoto}
               </div>
-              <div className="text-sm text-zinc-600">2m</div>
+              <div className="text-sm text-zinc-600">{hitungSelisihWaktu(new Date(TanggalUnggah))}</div>
             </div>
             {komentarfoto && komentarfoto.map((data, index) => (
               <div key={index} className="px-4 my-2">
